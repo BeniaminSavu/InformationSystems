@@ -1,0 +1,28 @@
+ <div class="container">
+    <div class="row">
+          <div class="jumbotron"> 
+			<img src="images/home.jpg" alt="" > 
+		  </div>	  
+    </div>
+	<div class="row" style="padding-top:20" >
+          <div class="span4"> 
+		 Despre noi
+			<img src="images/home.jpg" alt="" > 
+		  </div>
+		<div class="span4"> 
+		Locatii
+			<img src="images/home.jpg" alt="" > 
+		  </div>	
+		<div class="span4"> 
+			Membrii
+			<img src="images/home.jpg" alt="" > 
+		  </div>			  
+    </div>
+	
+  </div>
+  
+  
+  
+  <style type="text/css">
+   body { background: #ababab !important; } 
+</style>
