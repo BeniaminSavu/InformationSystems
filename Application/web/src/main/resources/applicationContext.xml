@@ -4,5 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
+	<import resource="classpath:persistence-config.xml"/>
+	<import resource="classpath:security-config.xml"/>
+	<import resource="classpath:service-config.xml"/>
+	<import resource="classpath:authentication-config.xml"/>
 
 </beans>

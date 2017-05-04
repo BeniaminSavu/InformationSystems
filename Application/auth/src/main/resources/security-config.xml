@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+   xmlns="http://www.springframework.org/schema/security"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:beans="http://www.springframework.org/schema/beans"
+   xmlns:sec="http://www.springframework.org/schema/security"
+   xsi:schemaLocation="
+      http://www.springframework.org/schema/security 
+      http://www.springframework.org/schema/security/spring-security-4.2.xsd
+      http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+ 
+ 	<beans:bean id="customUserDetailsService" class="org.arthub.authentication.CustomUserDetailsService" />
+	<beans:bean id="userTokenGenerator" class="org.arthub.authentication.UserTokenGenerator" />
+  
+   <http auto-config="true">
+      <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+ 
+      
+ 		<csrf disabled="true"/>
+      <logout />
+   </http>
+ 
+ 
+   <authentication-manager>
+		<authentication-provider ref="authenticationProvider" />
+	</authentication-manager>
+
+	<beans:bean id="authenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="customUserDetailsService" />
+		<beans:property name="authoritiesMapper" ref="authoritiesMapper" />
+	</beans:bean>
+
+	<beans:bean id="authoritiesMapper"
+		class="org.springframework.security.access.hierarchicalroles.RoleHierarchyAuthoritiesMapper">
+		<beans:constructor-arg ref="roleHierarchy" />
+	</beans:bean>
+
+	<beans:bean id="roleHierarchy"
+		class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+		<beans:property name="hierarchy">
+			<beans:value>
+				ROLE_ADMIN > ROLE_USER
+			</beans:value>
+		</beans:property>
+	</beans:bean>
+ 
+</beans:beans>
