@@ -1,15 +1,21 @@
 package org.arthub.controller;
 
-import org.springframework.stereotype.Controller;
-
+import org.arthub.controller.response.LoginResponse;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@CrossOrigin
+@RequestMapping("/arthub1")
 public class MainController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(){
-		return "index";
+	@GetMapping
+	public LoginResponse index(){
+		LoginResponse response = new LoginResponse();
+		response.setStatus(200);
+		response.setMessage("Beniamin Savu");
+		return response;
 	}
 }

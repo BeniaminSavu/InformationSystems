@@ -9,18 +9,22 @@
       http://www.springframework.org/schema/security/spring-security-4.2.xsd
       http://www.springframework.org/schema/beans 
       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
- 
- 	<beans:bean id="customUserDetailsService" class="org.arthub.authentication.CustomUserDetailsService" />
-	<beans:bean id="userTokenGenerator" class="org.arthub.authentication.UserTokenGenerator" />
-  
-   <http auto-config="true">
-      <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
- 
+   
+   <http entry-point-ref="myEntryPoint">
+ 	  <intercept-url pattern="/signup" access="permitAll" />
+ 	  <intercept-url pattern="/login" access="permitAll" />
+      <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+      <intercept-url pattern="/arthub/**" access="hasRole('ROLE_USER')"/>
       
- 		<csrf disabled="true"/>
-      <logout />
+      <custom-filter after="BASIC_AUTH_FILTER" ref="myCsrfTokenResponseFilter" />
+      
+      <form-login
+         authentication-success-handler-ref="mySuccessHandler"
+         authentication-failure-handler-ref="myFailureHandler"
+      />
+      
+      <logout invalidate-session="true" logout-success-url="/" />
    </http>
- 
  
    <authentication-manager>
 		<authentication-provider ref="authenticationProvider" />

@@ -35,6 +35,17 @@ function ArthubAPI() {
 		var postURL = "/web/signup";
         return doAsyncPost(postURL, user);
 	};
+	
+	this.loginUser = function(user){
+		var postURL = "/web/login";
+        return doAsyncPost(postURL, user);
+	};
+	
+	this.getUserData = function(){
+		var postURL = "/web/arthub1";
+		return doAsyncGet(postURL);
+	};
+
 
 	ArthubAPI.instance = this;
 }

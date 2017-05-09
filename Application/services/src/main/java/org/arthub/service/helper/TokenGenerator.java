@@ -1,7 +1,7 @@
-package org.arthub.authentication;
+package org.arthub.service.helper;
 import java.util.UUID;
 
-public class UserTokenGenerator implements TokenGenerator {
+public class TokenGenerator implements Generator {
 
 	public String generateToken() {
 		String token;

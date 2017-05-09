@@ -9,6 +9,8 @@ import org.arthub.persistence.model.UserTokenModel;
 import org.arthub.persistence.repository.RoleRepository;
 import org.arthub.persistence.repository.UserRepository;
 import org.arthub.persistence.repository.UserTokenRepository;
+import org.arthub.service.helper.EmailSender;
+import org.arthub.service.helper.Generator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +25,15 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserTokenRepository userTokenRepository;
+	
+	@Autowired
+	private EmailSender emailSender;
+	
+	@Autowired
+	private Generator tokenGenerator;
 
-	public void createUser(UserModel user, String token) {
+	public void createUser(UserModel user) {
+		String token = tokenGenerator.generateToken();
 		RoleModel role = userRoleRepository.findByRole("ROLE_USER");
 		user.setRole(role);
 
@@ -36,7 +45,8 @@ public class UserServiceImpl implements UserService {
 		userToken = userTokenRepository.findByToken(token);
 		user.setUserToken(userToken);
 		userRepository.save(user);
-
+		
+		emailSender.sendMail(user.getEmail(), token);
 	}
 
 	@Override
