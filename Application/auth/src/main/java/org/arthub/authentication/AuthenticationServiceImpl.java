@@ -12,15 +12,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private TokenGenerator userTokenGenerator;
+	//@Autowired
+	//private TokenGenerator userTokenGenerator;
 
 	///@Autowired
 	//private EmailSender emailSender;
 
 	public void createUser(UserModel user) {
-		String token = userTokenGenerator.generateToken();
-		userService.createUser(user, token);
+		//String token = userTokenGenerator.generateToken();
+		//userService.createUser(user, token);
 		//emailSender.sendMail(user.getEmail(), token);
 	}
 

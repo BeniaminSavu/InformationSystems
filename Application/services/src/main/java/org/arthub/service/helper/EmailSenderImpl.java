@@ -1,4 +1,4 @@
-package org.arthub.authentication;
+package org.arthub.service.helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;

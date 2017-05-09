@@ -34,7 +34,7 @@ ArtHub
 	   <li><a href="index.html">Edit Profile</a></li>
 	</ul>
 	
-    <p class="navbar-text navbar-right" style="padding-right: 50px">
+    <p id="userdata" class="navbar-text navbar-right" style="padding-right: 50px">
      Welcome [User] </p>
     
   </div>
@@ -56,6 +56,14 @@ ArtHub
  
  </div>
 
+<script src="js/ArthubAPI.js"></script>
+<script src="js/loggedUserUI.js"></script>
+
+<script >
+	$(document).ready(function() {
+	loadData();
+});  
+</script>
 
 </body>
 </html>
