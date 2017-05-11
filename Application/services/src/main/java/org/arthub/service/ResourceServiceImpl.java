@@ -15,6 +15,9 @@ public class ResourceServiceImpl implements ResourceService{
 
 	@Override
 	public void createResource(ResourceModel resource) {
+		resource.setAvailability(false);
+		resource.setRoomMember(0);
+		resource.setTimeAllocation(0);
 		resourceRepository.save(resource);
 	}
 

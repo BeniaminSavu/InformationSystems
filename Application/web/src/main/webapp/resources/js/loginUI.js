@@ -5,7 +5,6 @@ jQuery(document).ready(function ($) {
 		showMeYourCookies('At loginform submission');
 
 		var cookie = Cookies.get('arthub');
-		console.log(cookie.url);
 		var data = 'username=' + $('#username').val() + '&password=' + $('#password').val();
 		console.log(data);
 		$.ajax({
@@ -17,7 +16,7 @@ jQuery(document).ready(function ($) {
 		}).done(function(data, textStatus, jqXHR) {
 			showMeYourCookies('When loginform is done');
 			
-			window.location = 'index';
+			window.location = 'home';
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			showMeYourCookies('When loginform fails');
 

@@ -11,14 +11,29 @@ public class ViewController {
 		return "index";
 	}
 	
-	@RequestMapping("/loginPage")
+	@RequestMapping("/signin")
 	public String getLoginPage() {
 		return "login";
 	}
 	
-	@RequestMapping("/registerPage")
+	@RequestMapping("/register")
 	public String getRegisterPage() {
 		return "register";
+	}
+	
+	@RequestMapping("/home")
+	public String getLoggedUserPage() {
+		return "loggedUser";
+	}
+	
+	@RequestMapping("/newEvent")
+	public String getNewEventPage(){
+		return "newEvent";
+	}
+	
+	@RequestMapping("/newResource")
+	public String getNewResourcePage(){
+		return "newResource";
 	}
 }
 

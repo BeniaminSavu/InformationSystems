@@ -46,6 +46,9 @@ function ArthubAPI() {
 		return doAsyncGet(postURL);
 	};
 
-
+	this.createResource = function(resource){
+		var postURL = "/web/arthub/resource/add";
+		return doAsyncPost(postURL, resource);
+	}
 	ArthubAPI.instance = this;
 }
