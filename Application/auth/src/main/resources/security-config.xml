@@ -16,13 +16,15 @@
       <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
       <intercept-url pattern="/arthub/**" access="hasRole('ROLE_USER')"/>
       
-      <custom-filter after="BASIC_AUTH_FILTER" ref="myCsrfTokenResponseFilter" />
+      <custom-filter after="CSRF_FILTER" ref="myCsrfTokenResponseFilter" />
+      <custom-filter before="SECURITY_CONTEXT_FILTER" ref="myCorsOriginFilter" />
       
       <form-login
+      	 default-target-url="index" 
          authentication-success-handler-ref="mySuccessHandler"
          authentication-failure-handler-ref="myFailureHandler"
       />
-      
+      <csrf disabled="true" />
       <logout invalidate-session="true" logout-success-url="/" />
    </http>
  

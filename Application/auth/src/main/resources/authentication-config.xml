@@ -13,6 +13,7 @@
   <bean id="myFailureHandler" class="org.arthub.authentication.RESTAuthenticationFailureHandler"/>
   <bean id="myEntryPoint" class="org.arthub.authentication.RESTAuthenticationEntryPoint"/>
   <bean id="myCsrfTokenResponseFilter" class="org.arthub.authentication.CsrfTokenResponseHeaderBindingFilter"/>
+  <bean id="myCorsOriginFilter" class="org.arthub.authentication.CorsOriginFilter"/>
   
   <import resource="classpath:security-config.xml"/>
   
