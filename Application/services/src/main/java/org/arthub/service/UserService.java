@@ -4,7 +4,7 @@ import org.arthub.persistence.model.UserModel;
 
 public interface UserService {
 
-	public void createUser(UserModel user, String token);
+	public void createUser(UserModel user);
 
 	public boolean verify(String userToken);
 
