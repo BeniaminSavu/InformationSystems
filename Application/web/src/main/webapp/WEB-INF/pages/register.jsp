@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
+<head>
+<link rel="shortcut icon" href=<c:url value="/resource/images/favicon.ico"/> type="image/x-icon">
+<link rel="icon" href=<c:url value="/resource/images/favicon.ico"/> type="image/x-icon">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href=<c:url value="/resource/css/workaround.css"/> type="text/css" media="screen">
+  
+  
+
+<title>
+ArtHub
+</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-default" style="margin-bottom:0">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index">ArtHub</a>
+    </div>
+	<ul class="nav navbar-nav navbar-left">
+      <li><a href="index">Home</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/loginPage">Log In</a></li>
+      <li class="active"><a href="registerPage">Sign Up </a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form id="register" method="post">
+			<h2>Sign Up <small>It's free!</small></h2>
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                        <input type="text" name="firstName" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="text" name="lastName" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="text" name="username" id="display_name" class="form-control input-lg" placeholder="Display Name" tabindex="3">
+			</div>
+			<div class="form-group">
+				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+					</div>
+				</div>
+			</div>
+			<div class="row" >
+				<div class="col-xs-11 col-sm-12 col-md-12">
+					 By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+				</div>
+			</div>
+		</form>
+		
+		<hr class="colorgraph">
+		<div  class="row" style="padding-bottom:200">
+			<div class="col-xs-12 col-md-12">
+				<button onclick="register()" class="btn btn-primary btn-block btn-lg" tabindex="7">Register</button>
+			</div>
+		</div>
+			
+		<div class="row" style="padding-top:200">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				Already registered? Log in here:<a href="loginPage" class="btn btn-success btn-block btn-lg">Log In</a>
+			</div>
+		</div>	
+	</div>
+</div>
+<p id="log"></p>
+
+<!-- Modal -->
+<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+				<h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+			</div>
+			<div class="modal-body">
+				<p>You will basically sell your soul to us</p>
+				</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+	
+
+<script src=<c:url value="/resource/js/ArthubAPI.js"/>></script>
+<script src=<c:url value="/resource/js/registerUI.js"/>></script>
+</body>
+</html>

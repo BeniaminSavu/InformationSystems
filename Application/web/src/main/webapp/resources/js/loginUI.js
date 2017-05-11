@@ -1,4 +1,4 @@
-/*jQuery(document).ready(function ($) {
+jQuery(document).ready(function ($) {
 	$('#login').submit(function (event) {
 		event.preventDefault();
 
@@ -17,8 +17,7 @@
 		}).done(function(data, textStatus, jqXHR) {
 			showMeYourCookies('When loginform is done');
 			
-			window.location = 'file:///C:/Users/benis/OneDrive/Documents/InformationSystems/ArtHub-Site/index.html';
-
+			window.location = 'index';
 		}).fail(function(jqXHR, textStatus, errorThrown) {
 			showMeYourCookies('When loginform fails');
 
