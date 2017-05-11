@@ -1,6 +1,7 @@
 package org.arthub.service;
 
 import org.arthub.persistence.model.UserModel;
+import org.arthub.service.data.UserName;
 
 public interface UserService {
 
@@ -13,6 +14,8 @@ public interface UserService {
 	public UserModel findById(long id);
 
 	public String getUsername();
+
+	public UserName getFullName();
 
 
 }

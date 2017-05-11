@@ -9,9 +9,12 @@ import org.arthub.persistence.model.UserTokenModel;
 import org.arthub.persistence.repository.RoleRepository;
 import org.arthub.persistence.repository.UserRepository;
 import org.arthub.persistence.repository.UserTokenRepository;
+import org.arthub.service.data.UserName;
 import org.arthub.service.helper.EmailSender;
 import org.arthub.service.helper.Generator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -46,7 +49,7 @@ public class UserServiceImpl implements UserService {
 		user.setUserToken(userToken);
 		userRepository.save(user);
 		
-		emailSender.sendMail(user.getEmail(), token);
+		//emailSender.sendMail(user.getEmail(), token);
 	}
 
 	@Override
@@ -71,5 +74,16 @@ public class UserServiceImpl implements UserService {
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public UserName getFullName() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserModel user = userRepository.findByUsername(auth.getName());
+		UserName userData = new UserName();
+		userData.setFirstName(user.getFirstName());
+		userData.setLastName(user.getLastName());
+		return userData;
+		
 	}
 }
