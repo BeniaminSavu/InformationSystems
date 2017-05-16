@@ -9,7 +9,8 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src=<c:url value="/resource/js/home.js"/>></script>
+	<script src=<c:url value="/resource/js/ArthubAPI.js"/>></script>
+  	<script src=<c:url value="/resource/js/commonUI.js"/>></script>
   	
 
 <title>
@@ -150,7 +151,12 @@ ArtHub
 </div><!-- /.modal -->
 </div>
 
-	<script  src="js/date.js" type="text/javascript"> ></script>
+<script>
+$(document).ready(function() {
+	loadUserFirstAndLastname();
+});  
+ </script>
+	
 </body>
 
 </html>

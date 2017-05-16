@@ -41,9 +41,9 @@ function ArthubAPI() {
         return doAsyncPost(postURL, user);
 	};
 	
-	this.getUserData = function(){
-		var postURL = "/web/arthub1";
-		return doAsyncGet(postURL);
+	this.getUserFirstAndLastname = function(){
+		var apiURL = "/web/arthub/user";
+		return doAsyncGet(apiURL);
 	};
 
 	this.createResource = function(resource){
