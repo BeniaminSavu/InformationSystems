@@ -27,8 +27,8 @@ ArtHub
       <li><a href="index">Home</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="/loginPage">Log In</a></li>
-      <li class="active"><a href="registerPage">Sign Up </a></li>
+      <li><a href="signin">Log In</a></li>
+      <li class="active"><a href="register">Sign Up </a></li>
     </ul>
   </div>
 </nav>
@@ -86,7 +86,7 @@ ArtHub
 			
 		<div class="row" style="padding-top:200">
 			<div class="col-xs-12 col-sm-12 col-md-12">
-				Already registered? Log in here:<a href="loginPage" class="btn btn-success btn-block btn-lg">Log In</a>
+				Already registered? Log in here:<a href="login" class="btn btn-success btn-block btn-lg">Log In</a>
 			</div>
 		</div>	
 	</div>

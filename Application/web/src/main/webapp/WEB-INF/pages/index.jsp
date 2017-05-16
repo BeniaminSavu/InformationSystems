@@ -8,10 +8,6 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-	<script src=<c:url value="/resource/js/lib/jquery.cookie.js"/>></script>
-	<script src=<c:url value="/resource/js/utils.js"/>></script>
-	<script src=<c:url value="/resource/js/index.js"/>></script>
 	
 
 <title>
@@ -30,8 +26,8 @@ ArtHub
       <li class="active"><a href="index">Home</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="loginPage">Log In</a></li>
-      <li><a href="registerPage">Sign Up </a></li>
+      <li><a href="signin">Log In</a></li>
+      <li><a href="register">Sign Up </a></li>
 	  <li id="test"></li>
     </ul>
   </div>
@@ -49,7 +45,7 @@ ArtHub
 		
 		<div class="row" >
 			<div class="col-xs-12 col-sm-12 col-md-12">
-					<p style="text-align:center;"><a href="register.html"><button type="button" class="btn btn-success">Join us now!</button></a>	</p>
+					<p style="text-align:center;"><a href="register"><button type="button" class="btn btn-success">Join us now!</button></a>	</p>
 			</div>		  
 		</div>
 		
