@@ -1,6 +1,5 @@
 package org.arthub.service;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,10 +30,10 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserTokenRepository userTokenRepository;
-	
+
 	@Autowired
 	private EmailSender emailSender;
-	
+
 	@Autowired
 	private Generator tokenGenerator;
 
@@ -51,8 +50,8 @@ public class UserServiceImpl implements UserService {
 		userToken = userTokenRepository.findByToken(token);
 		user.setUserToken(userToken);
 		userRepository.save(user);
-		
-		//emailSender.sendMail(user.getEmail(), token);
+
+		// emailSender.sendMail(user.getEmail(), token);
 	}
 
 	@Override
@@ -87,7 +86,7 @@ public class UserServiceImpl implements UserService {
 		userData.setFirstName(user.getFirstName());
 		userData.setLastName(user.getLastName());
 		return userData;
-		
+
 	}
 
 	@Override
@@ -105,4 +104,23 @@ public class UserServiceImpl implements UserService {
 		}
 		return data;
 	}
+
+	public void deleteUser(String username) {
+		UserModel user = userRepository.findByUsername(username);
+		userRepository.delete(user);
+	}
+
+	public void deleteAllUsers() {
+		List<UserModel> users = userRepository.findAll();
+		for (UserModel user : users) {
+			userRepository.delete(user);
+		}
+	}
+
+	public void updateRole(String username, RoleModel role) {
+		UserModel user = userRepository.findByUsername(username);
+		user.setRole(role);
+
+	}
+
 }
