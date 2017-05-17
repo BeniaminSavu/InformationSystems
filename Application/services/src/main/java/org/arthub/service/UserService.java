@@ -1,6 +1,9 @@
 package org.arthub.service;
 
+import java.util.List;
+
 import org.arthub.persistence.model.UserModel;
+import org.arthub.service.data.UserData;
 import org.arthub.service.data.UserName;
 
 public interface UserService {
@@ -17,5 +20,5 @@ public interface UserService {
 
 	public UserName getFullName();
 
-
+	public List<UserData> getUsers(); 
 }

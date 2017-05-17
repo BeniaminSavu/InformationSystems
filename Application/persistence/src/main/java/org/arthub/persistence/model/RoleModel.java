@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "role")
 public class RoleModel extends Model {
@@ -33,4 +34,5 @@ public class RoleModel extends Model {
 		this.users = users;
 	}
 
+	
 }

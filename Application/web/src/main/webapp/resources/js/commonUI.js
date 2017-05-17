@@ -5,7 +5,8 @@ function loadUserFirstAndLastname(){
 	console.log("test");
     var request = arthubAPI.getUserFirstAndLastname();
 	request.done(function( data ) {
-    	document.getElementById("userdata").innerHTML = data.message;
+		console.log(data);
+    	document.getElementById("userdata").innerHTML = data.firstName + " " + data.lastName;
 		
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 

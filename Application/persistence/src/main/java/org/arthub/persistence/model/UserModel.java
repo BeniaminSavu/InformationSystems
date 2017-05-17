@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "user")
 public class UserModel extends Model {
@@ -76,7 +77,7 @@ public class UserModel extends Model {
 	public void setUserToken(UserTokenModel userToken) {
 		this.userToken = userToken;
 	}
-
+	
 	public RoleModel getRole() {
 		return role;
 	}
@@ -85,4 +86,5 @@ public class UserModel extends Model {
 		this.role = role;
 	}
 
+	
 }
