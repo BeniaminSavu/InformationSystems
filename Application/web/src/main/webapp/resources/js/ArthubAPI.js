@@ -10,6 +10,10 @@ function ArthubAPI() {
         var fullUrl = baseURL + partialUrl;
         return $.ajax({
             url: fullUrl,
+            type:"GET",
+            headers: {
+                "Content-Type":"application/json"
+            },
             dataType: "json"
         });
     };
@@ -42,7 +46,7 @@ function ArthubAPI() {
 	};
 	
 	this.getUserFirstAndLastname = function(){
-		var apiURL = "/web/arthub/user";
+		var apiURL = "/web/arthub/user/fullname";
 		return doAsyncGet(apiURL);
 	};
 

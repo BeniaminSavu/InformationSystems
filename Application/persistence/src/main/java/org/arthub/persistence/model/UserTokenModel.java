@@ -42,4 +42,5 @@ public class UserTokenModel extends Model {
 		this.date = date;
 	}
 
+	
 }
