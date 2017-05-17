@@ -2,6 +2,7 @@ package org.arthub.service;
 
 import java.util.List;
 
+import org.arthub.persistence.model.RoleModel;
 import org.arthub.persistence.model.UserModel;
 import org.arthub.service.data.UserData;
 import org.arthub.service.data.UserName;
@@ -20,5 +21,11 @@ public interface UserService {
 
 	public UserName getFullName();
 
-	public List<UserData> getUsers(); 
+	public List<UserData> getUsers();
+
+	public void deleteUser(String username);
+
+	public void deleteAllUsers();
+
+	public void updateRole(String username, RoleModel role);
 }

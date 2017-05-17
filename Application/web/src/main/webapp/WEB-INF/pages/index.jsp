@@ -21,7 +21,7 @@ ArtHub
   <div class="container-fluid">
     <div class="navbar-header">
       <a href="index">
-         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="80px"/>
+         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="82px"/>
       </a>
     </div>
 	<ul class="nav navbar-nav navbar-left">
