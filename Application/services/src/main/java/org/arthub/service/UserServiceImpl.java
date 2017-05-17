@@ -1,7 +1,9 @@
 package org.arthub.service;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.arthub.persistence.model.RoleModel;
 import org.arthub.persistence.model.UserModel;
@@ -9,6 +11,7 @@ import org.arthub.persistence.model.UserTokenModel;
 import org.arthub.persistence.repository.RoleRepository;
 import org.arthub.persistence.repository.UserRepository;
 import org.arthub.persistence.repository.UserTokenRepository;
+import org.arthub.service.data.UserData;
 import org.arthub.service.data.UserName;
 import org.arthub.service.helper.EmailSender;
 import org.arthub.service.helper.Generator;
@@ -85,5 +88,21 @@ public class UserServiceImpl implements UserService {
 		userData.setLastName(user.getLastName());
 		return userData;
 		
+	}
+
+	@Override
+	public List<UserData> getUsers() {
+		List<UserModel> users = userRepository.findAll();
+		List<UserData> data = new ArrayList<UserData>();
+		for (UserModel user : users) {
+			UserData userData = new UserData();
+			userData.setEmail(user.getEmail());
+			userData.setFirstName(user.getFirstName());
+			userData.setLastName(user.getLastName());
+			userData.setUsername(user.getUsername());
+			userData.setRole(user.getRole().getRole());
+			data.add(userData);
+		}
+		return data;
 	}
 }

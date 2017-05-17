@@ -28,8 +28,4 @@ public class SignUpController {
 		return response;
 	}
 	
-	@GetMapping
-	public String processTest() {
-		return "test";
-	}
 }
