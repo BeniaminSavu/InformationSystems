@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="shortcut icon" href=<c:url value="resource/images/favicon.ico"/> type="image/x-icon">
-<link rel="icon" href=<c:url value="/resource/images/favicon.ico"/> type="image/x-icon">
+<link rel="icon" href=<c:url value="/resource/images/favicon.png"/> type="image/x-icon">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,9 +20,11 @@ ArtHub
 
 <nav class="navbar navbar-default" style="margin-bottom:0">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index">ArtHub</a>
-    </div>
+   <div class="navbar-header">
+      <a href="index">
+         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="80px"/>
+      </a>
+   </div>
 	<ul class="nav navbar-nav navbar-left">
       <li><a href="index">Home</a></li>
     </ul>
