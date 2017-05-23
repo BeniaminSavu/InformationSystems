@@ -1,5 +1,7 @@
 package org.arthub.controller;
 
+import org.arthub.service.CalendarService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,6 +36,16 @@ public class ViewController {
 	@RequestMapping("/newResource")
 	public String getNewResourcePage(){
 		return "newResource";
+	}
+	
+	@RequestMapping("/resources")
+	public String getResourcePage(){
+		return "resources";
+	}
+	
+	@RequestMapping("/manageMembers")
+	public String getMembers(){
+		return "manageMembers";
 	}
 }
 

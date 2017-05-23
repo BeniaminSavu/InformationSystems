@@ -18,8 +18,22 @@ function ArthubAPI() {
         });
     };
 
+    var doAsyncDelete = function (partialURL)
+    {
+        var fullUrl = baseURL + partialURL;
+        return $.ajax({
+            url: fullUrl,
+            type: "DELETE",
+            headers: {
+            	"Content-Type":"application/json"            
+            },            
+            dataType: "json"
+        });
+    }
+    
     var doAsyncPost = function (partialURL, jsonDataToPost) {
         var fullUrl = baseURL + partialURL;
+        console.log(jsonDataToPost);
         return $.ajax({
             url: fullUrl,
             type: "POST",
@@ -53,6 +67,17 @@ function ArthubAPI() {
 	this.createResource = function(resource){
 		var postURL = "/web/arthub/resource/add";
 		return doAsyncPost(postURL, resource);
-	}
+	};
+	
+	this.getAllUsers = function(){
+		var apiURL = "/web/arthub/user/all";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.deleteUser = function(username){
+		var postURL = "/web/arthub/user/delete";
+		return doAsyncPost(postURL, username);
+	};
+	
 	ArthubAPI.instance = this;
 }

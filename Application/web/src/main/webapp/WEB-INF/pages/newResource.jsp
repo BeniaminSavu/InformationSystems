@@ -17,7 +17,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src=<c:url value="/resource/js/ArthubAPI.js"/>></script>
   	<script src=<c:url value="/resource/js/commonUI.js"/>></script>
-  	<script src=<c:url value="/resource/js/newResource.js"/>></script>
+  	<script src=<c:url value="/resource/js/newResourceUI.js"/>></script>
 
 <title>ArtHub</title>
 </head>
@@ -28,11 +28,11 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
       <a href="index">
-         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="82px"/>
+         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="45px" height="45px"/>
       </a>
     </div>
 			<ul class="nav navbar-nav navbar-left">
-				<li class="active"><a href="home">Home</a></li>
+				<li><a href="home">Home</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Manage Events <span
 						class="caret"></span></a>
@@ -41,11 +41,11 @@
 						<li><a href="#">Edit Event</a></li>
 						<li><a href="#">View Events</a></li>
 					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
+				<li class="dropdown active"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Manage Resources <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="newResource">Create new resource</a></li>
+						<li class="active"><a href="newResource">Create new resource</a></li>
 						<li><a href="#">Edit Event</a></li>
 						<li><a href="#">View Events</a></li>
 					</ul></li>

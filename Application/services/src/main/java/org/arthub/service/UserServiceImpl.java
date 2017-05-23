@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -107,6 +108,9 @@ public class UserServiceImpl implements UserService {
 
 	public void deleteUser(String username) {
 		UserModel user = userRepository.findByUsername(username);
+		user.setRole(null);
+		user.setUserToken(null);
+		userRepository.save(user);
 		userRepository.delete(user);
 	}
 

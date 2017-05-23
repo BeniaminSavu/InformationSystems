@@ -1,7 +1,11 @@
 package org.arthub.persistence.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -11,16 +15,21 @@ public class ResourceModel extends Model {
 	private String name;
 
 	@Column
-	private int timeAllocation;
-
-	@Column
-	private int roomMember;
+	private int price;
 
 	@Column
 	private int capacity;
 
-	@Column
-	private boolean availability;
+	@OneToMany(mappedBy = "resource")
+	private List<CalendarResourceModel> calendarResource = new ArrayList<CalendarResourceModel>();
+	
+	public List<CalendarResourceModel> getCalendarResource() {
+		return calendarResource;
+	}
+
+	public void setCalendarResource(List<CalendarResourceModel> calendarResource) {
+		this.calendarResource = calendarResource;
+	}
 
 	public String getName() {
 		return name;
@@ -30,20 +39,12 @@ public class ResourceModel extends Model {
 		this.name = name;
 	}
 
-	public int getTimeAllocation() {
-		return timeAllocation;
+	public int getPrice() {
+		return price;
 	}
 
-	public void setTimeAllocation(int timeAllocation) {
-		this.timeAllocation = timeAllocation;
-	}
-
-	public int getRoomMember() {
-		return roomMember;
-	}
-
-	public void setRoomMember(int roomMember) {
-		this.roomMember = roomMember;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public int getCapacity() {
@@ -52,14 +53,6 @@ public class ResourceModel extends Model {
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
-	}
-
-	public boolean isAvailability() {
-		return availability;
-	}
-
-	public void setAvailability(boolean availability) {
-		this.availability = availability;
 	}
 
 }
