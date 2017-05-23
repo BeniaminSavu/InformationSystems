@@ -8,8 +8,10 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
   	<script src=<c:url value="/resource/js/ArthubAPI.js"/>></script>
   	<script src=<c:url value="/resource/js/commonUI.js"/>></script>
+  	<script src=<c:url value="/resource/js/manageMembersUI.js"/>></script>
 
 <title>
 ArtHub
@@ -26,7 +28,7 @@ ArtHub
       </a>
     </div>
 	<ul class="nav navbar-nav navbar-left">
-      <li class="active"><a href="home">Home</a></li>
+      <li><a href="home">Home</a></li>
 	  <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Events <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -40,10 +42,11 @@ ArtHub
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newResource">Create new resource</a></li>
-						<li><a href="resources">View Resources</a></li>
+						<li><a href="#">Edit Event</a></li>
+						<li><a href="#">View Events</a></li>
 					</ul>
 		</li>
-		<li><a href="manageMembers">Manage Members</a></li>
+	   <li class="active"><a href="manageMembers">Manage Members</a></li>
 	   <li><a href="index">Edit Profile</a></li>
 	</ul>
 	
@@ -52,25 +55,54 @@ ArtHub
   </div>
 </nav>
 
-<div class="bg-content">
-    <div class="container-fluid" >
-		<div class="row" >
-			<div class="col-md -12">
-					<div  class= "jumbotron" > 
-						<p style="text-align:center;"><img src=<c:url value="/resource/images/home.jpg"/>  style="width:75%; height:70%"   ></p>
-					</div>			
-			</div>		  
-		</div>
+<div class="container" align="left">
 
-    </div>
-	
-  </div>
+<!--This is our template. -->
+<!--Data will be inserted in its according place, replacing the brackets.-->
+<p id="data"></p>
+
+<!--Your new content will be displayed in here-->
+<div class="content-placeholder"></div>
+<script id="address-template" type="text/x-handlebars-template">
+<div class="bs-example" data-example-id="simple-table"> 
+	<table class="table"> 
+		<caption>Optional table caption.</caption>
+			<thead>
+				<tr> 
+					<th>First Name</th> 
+					<th>Last Name</th> 
+					<th>Username</th> 
+					<th>Role</th> 
+				</tr> 
+			</thead> 
+			<tbody> 
+			
+			{{#each user}}
+				<tr> 
+					<td>{{firstName}}</td> 
+					<td>{{lastName}}</td>
+					<td>{{username}}</td> 
+					<td>{{role}}</td> 
+					<td><button  type="button" class="btn button1" >Edit User</button>
+					<button onclick="deleteUser('{{username}}')" type="button" class="button3 btn">Delete</button></td>
+				</tr> 
+			{{/each}}
+			
+			</tbody> 
+	</table> 
+</div>
+</script>
+
+</div>
 
 <script>
 $(document).ready(function() {
 	loadUserFirstAndLastname();
+	getUsers();
+	
 });  
-  </script>
+</script>
 
 </body>
+
 </html>

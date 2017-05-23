@@ -1,7 +1,9 @@
 package org.arthub.persistence.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -26,7 +28,7 @@ public class UserModel extends Model {
 	@JoinColumn(name = "userTokenId")
 	private UserTokenModel userToken;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "roleId")
 	private RoleModel role;
 
