@@ -5,10 +5,11 @@
 	<link rel="icon" href=<c:url value="/resource/images/favicon.png"/> type="image/x-icon">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href=<c:url value="/resource/css/workaround.css"/> type="text/css" media="screen">
-	
+	<link rel="stylesheet" href=<c:url value="/resource/css/pikaday.css"/> type="text/css" media="screen">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src=<c:url value="/resource/js/lib/Pikaday.js"/>></script>
 	<script src=<c:url value="/resource/js/ArthubAPI.js"/>></script>
   	<script src=<c:url value="/resource/js/commonUI.js"/>></script>
   	
@@ -24,7 +25,7 @@ ArtHub
   <div class="container-fluid">
    <div class="navbar-header">
       <a href="index">
-         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="45px" height="45px""/>
+         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="80px" height="45px""/>
       </a>
     </div>
 	<ul class="nav navbar-nav navbar-left">
@@ -74,54 +75,32 @@ ArtHub
 					</div>
 				</div>
 			</div>
-			<!-- -->
-			<div class="bootstrap-iso">
-			  <div class="row">
-			   <div class="col-md-6 col-sm-6 col-xs-12">
-	
-				<!-- Form code begins -->
-				<form method="post">
-				  <div class="form-group"> <!-- Date input -->
-					<label class="control-label" for="date">Date</label>
-					<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
-				  </div>
-				 </form>
-				 <!-- Form code ends --> 
-
-				</div>
-			  </div>    
-			</div>
-				<!-- -->
-			<div class="row">
-				<div class="col-xs-12 col-sm-2 col-md-2">
-					<label>Event begins at:</label>
-				</div>
-				
-				<div class="col-xs-12 col-sm-3 col-md-3">
-					<div class="form-group">
-                        <input type="text" name="hour_begin" id="hour_begin" class="form-control input-lg" placeholder="Hour" tabindex="1">
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-3 col-md-3">
-					<div class="form-group">
-						<input type="text" name="minute_begin" id="minute_begin" class="form-control input-lg" placeholder="Minute" tabindex="2">
-					</div>
-				</div>
-				
-			</div>	
 			
-			<div class="row">
-				<div class="col-xs-12 col-sm-2 col-md-2">
-					<label>The duration of the event:</label>
-				</div>
-				
-				<div class="col-xs-12 col-sm-3 col-md-3">
+			<div class="row" >
+				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="hour_duration" id="hour_duration" class="form-control input-lg" placeholder="Hours" tabindex="1">
+						<label class="control-label" for="resource">Resource</label>
+                        <input type="text" name="resource" id="resource" class="form-control input-lg" placeholder="Resource" tabindex="1">
 					</div>
 				</div>
-			</div>	
-				
+			</div>
+			<div class="row">
+				 <div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+						<label class="control-label" for="date">Date</label>
+                        <input onclick="getBusyDates()" type="text" name="date" id="datePicker" class="form-control input-lg" placeholder="Date" tabindex="1">
+					</div>
+				</div>
+			</div>
+			
+			<div class="row" >
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<label class="control-label" for="date">Duration</label>
+                        <input type="text" name="duration" id="duration" class="form-control input-lg" placeholder="Duration" tabindex="1">
+					</div>
+				</div>
+			</div>
 			<div class="row" >
 				<div class="col-xs-11 col-sm-12 col-md-12">
 					 By clicking <strong class="label label-primary">Create Event</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> regarding event creation set out by this site.
@@ -153,12 +132,9 @@ ArtHub
 </div><!-- /.modal -->
 </div>
 
-<script>
-$(document).ready(function() {
-	loadUserFirstAndLastname();
-});  
- </script>
-	
+<script src=<c:url value="/resource/js/newEvent.js"/>></script>
+  	
+
 </body>
 
 </html>
