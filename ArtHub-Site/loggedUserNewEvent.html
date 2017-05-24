@@ -4,6 +4,8 @@
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/workaround.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/pikaday.css" type="text/css" media="screen">
+
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -61,27 +63,21 @@ ArtHub
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				 <div class="col-xs-12 col-sm-4 col-md-4">
-						<div class="form-group">
-							<div class='input-group date' id='datetimepicker1'>
-								<input type='text' class="form-control" />
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-								</span>
-							</div>
-						</div>
-				</div>
-				<div class="col-xs-12 col-sm-4 col-md-4">
+			<div class="row" >
+				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-4 col-md-4">
-					<div class="form-group">
-						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                        <input type="text" name="title" id="resource" class="form-control input-lg" placeholder="Resource" tabindex="1">
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				 <div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+                        <input onclick="test()" type="text" name="date" id="datePicker" class="form-control input-lg" placeholder="Date" tabindex="1">
+					</div>
+				</div>
+			</div>
+			<span id="test"></span>
 			<div class="row" >
 				<div class="col-xs-11 col-sm-12 col-md-12">
 					 By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
@@ -97,6 +93,8 @@ ArtHub
 				</div>
 				
 			</div>
+			
+			
 			
 		</form>
 	</div>
@@ -120,7 +118,32 @@ ArtHub
 </div><!-- /.modal -->
 </div>
 
-	<script  src="js/date.js" type="text/javascript"> ></script>
+	<script  src="js/Pikaday.js" type="text/javascript"> ></script>
+	
+	<script>
+	var resource;
+	$('#resource').keyup(function() {
+		resource = this.value;
+	});
+	function test(){
+		console.log(resource);
+	}
+	var date = new Date('2017-05-28');
+	var date2 = new Date('2017-05-29');
+	var evs = [];
+	evs[0] = date.toDateString();
+	evs[1] = date2.toDateString();
+    var picker = new Pikaday({
+        field: document.getElementById('datePicker'),
+        format: 'D MMM YYYY',
+        firstDay: 1,
+		minDate: new Date('2000-01-01'),
+		maxDate: new Date('2020-12-31'),
+		yearRange: [2000,2020],
+		events: evs,
+		numberOfMonths: 1
+    });
+</script>
 </body>
 
 </html>

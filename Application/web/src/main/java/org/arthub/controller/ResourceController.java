@@ -1,10 +1,15 @@
 package org.arthub.controller;
 
+import java.util.List;
+
 import org.arthub.controller.response.ResourceResponse;
 import org.arthub.persistence.model.ResourceModel;
 import org.arthub.service.ResourceService;
+import org.arthub.service.data.CalendarData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +30,12 @@ public class ResourceController {
 		response.setStatus(200);
 		response.setMessage("Resource added");
 		return response;
+	}
+	
+	@GetMapping("/available/{resourceName}")
+	public List<CalendarData> getResourceAvailable(@PathVariable("resourceName") String resourceName){
+		return resourceService.getResourceAvailability(resourceName);
+		
 	}
 	
 }

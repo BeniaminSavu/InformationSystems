@@ -28,7 +28,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
       <a href="index">
-         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="45px" height="45px"/>
+         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="80px" height="45px"/>
       </a>
     </div>
 			<ul class="nav navbar-nav navbar-left">
@@ -72,10 +72,20 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 col-sm-3 col-md-3">
-					<div class="form-group">
-						<input type="text" name="capacity" id="capacity"
-							class="form-control input-lg" placeholder="Capacity" tabindex="1">
+				<div class="row">
+					<div class="col-xs-12 col-sm-3 col-md-3">
+						<div class="form-group">
+							<input type="text" name="capacity" id="capacity"
+								class="form-control input-lg" placeholder="Capacity" tabindex="1">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-3 col-md-3">
+						<div class="form-group">
+							<input type="text" name="price" id="price"
+								class="form-control input-lg" placeholder="Price" tabindex="1">
+						</div>
 					</div>
 				</div>
 				</form>

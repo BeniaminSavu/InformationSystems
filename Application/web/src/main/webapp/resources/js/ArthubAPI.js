@@ -79,5 +79,10 @@ function ArthubAPI() {
 		return doAsyncPost(postURL, username);
 	};
 	
+	this.getBusyDates = function(resource){
+		var apiURL = "/web/arthub/resource/available/" + resource;
+		return doAsyncGet(apiURL);
+	};
+	
 	ArthubAPI.instance = this;
 }
