@@ -11,7 +11,9 @@ import org.arthub.persistence.repository.RoleRepository;
 import org.arthub.persistence.repository.UserRepository;
 import org.arthub.persistence.repository.UserTokenRepository;
 import org.arthub.service.data.UserData;
+import org.arthub.service.data.UserInfo;
 import org.arthub.service.data.UserName;
+import org.arthub.service.data.UsernameData;
 import org.arthub.service.helper.EmailSender;
 import org.arthub.service.helper.Generator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +98,8 @@ public class UserServiceImpl implements UserService {
 		List<UserData> data = new ArrayList<UserData>();
 		for (UserModel user : users) {
 			UserData userData = new UserData();
+			userData.setBalance(user.getCurrency());
+			userData.setId(user.getId());
 			userData.setEmail(user.getEmail());
 			userData.setFirstName(user.getFirstName());
 			userData.setLastName(user.getLastName());
@@ -125,6 +129,56 @@ public class UserServiceImpl implements UserService {
 		UserModel user = userRepository.findByUsername(username);
 		user.setRole(role);
 
+	}
+
+	@Override
+	public List<UsernameData> getAllUsersUsername() {
+		List<UserModel> models = userRepository.findAll();
+		List<UsernameData> data = new ArrayList<UsernameData>();
+		for (UserModel model : models) {
+			UsernameData username = new UsernameData();
+			username.setUsername(model.getUsername());
+			data.add(username);
+		}
+		return data;
+	}
+
+	@Override
+	public UserInfo getUserInfo(int id) {
+		UserModel user = userRepository.findOne(id);
+		UserInfo userInfo = new UserInfo();
+		userInfo.setBalance(user.getCurrency());
+		userInfo.setFirstName(user.getFirstName());
+		userInfo.setLastName(user.getLastName());
+		userInfo.setPassword(user.getPassword());
+		userInfo.setRole(user.getRole().getRole());
+		userInfo.setUsername(user.getUsername());
+		
+		return userInfo;
+	}
+
+	@Override
+	public void updateUser(UserInfo userData, int id) {
+		UserModel userModel = userRepository.findOne(id);
+		if(!userData.getPassword().equals("")){
+			userModel.setPassword(userData.getPassword());
+		}
+		if(userData.getBalance() != 0){
+			userModel.setCurrency(userData.getBalance());
+		}
+		if(!userData.getUsername().equals("")){
+			userModel.setUsername(userData.getUsername());
+		}
+		if(userData.getRole().equals("true")){
+			if(userModel.getRole().getRole().equals("ROLE_USER")){
+				RoleModel newRole = userRoleRepository.findByRole("ROLE_ADMIN");
+				userModel.setRole(newRole);
+			} else {
+				RoleModel newRole = userRoleRepository.findByRole("ROLE_USER");
+				userModel.setRole(newRole);
+			}
+		}
+		userRepository.save(userModel);
 	}
 
 }

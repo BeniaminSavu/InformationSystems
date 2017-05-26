@@ -24,39 +24,40 @@
 
 <body>
 
-	<nav class="navbar navbar-default" style="margin-bottom: 0">
-		<div class="container-fluid">
-			<div class="navbar-header">
+	<nav class="navbar navbar-default" style="margin-bottom:0">
+  <div class="container-fluid">
+    <div class="navbar-header">
       <a href="index">
          <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="80px" height="45px"/>
       </a>
     </div>
-			<ul class="nav navbar-nav navbar-left">
-				<li><a href="home">Home</a></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Manage Events <span
-						class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="newEvent">Create new event</a></li>
-						<li><a href="#">Edit Event</a></li>
-						<li><a href="#">View Events</a></li>
-					</ul></li>
-				<li class="dropdown active"><a class="dropdown-toggle"
+	<ul class="nav navbar-nav navbar-left">
+      <li><a href="home">Home</a></li>
+	  <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Events <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="active"><a href="newEvent">Create new event</a></li>
+            <li><a href="#">Edit Event</a></li>
+            <li><a href="#">View Events</a></li>
+          </ul>
+       </li>
+       <li class="dropdown active"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Manage Resources <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li class="active"><a href="newResource">Create new resource</a></li>
-						<li><a href="#">Edit Event</a></li>
-						<li><a href="#">View Events</a></li>
-					</ul></li>
-				<li><a href="index">Edit Profile</a></li>
-			</ul>
+						<li><a href="res">View Resources</a></li>
+					</ul>
+		</li>
+		<li><a href="manageMembers">Manage Members</a></li>
+	   <li><a href="index">Edit Profile</a></li>
+	</ul>
+	
+    <p id="userdata" class="navbar-text navbar-right" style="padding-right: 50px"></p>
+    
+  </div>
+</nav>
 
-			<p id="userdata" class="navbar-text navbar-right"
-				style="padding-right: 50px"></p>
-
-		</div>
-	</nav>
 
 
 	<div class="row">
@@ -79,6 +80,13 @@
 								class="form-control input-lg" placeholder="Capacity" tabindex="1">
 						</div>
 					</div>
+				</div>
+				<div class="row" >
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="form-group">
+						<textarea  class="form-control input-lg"  rows="3" cols="50" style="resize : none" name="description" id="description" placeholder="Enter your resource description here"></textarea>	
+					</div>
+				</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12 col-sm-3 col-md-3">

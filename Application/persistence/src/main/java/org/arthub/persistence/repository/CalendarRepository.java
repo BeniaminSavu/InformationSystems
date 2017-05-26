@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface CalendarRepository extends CrudRepository<CalendarModel, Integer>{
 
 	List<CalendarModel> findAll();
+
+	CalendarModel findByDayAndMonthAndYear(int day, int month, int year);
 }

@@ -1,13 +1,30 @@
 package org.arthub.service.data;
 
-
 public class UserData {
-	
+
+	private int id;
+	private int balance;
 	private String firstName;
 	private String lastName;
 	private String username;
 	private String email;
 	private String role;
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -47,6 +64,6 @@ public class UserData {
 
 	public void setRole(String role) {
 		this.role = role;
-	}	
+	}
 
 }

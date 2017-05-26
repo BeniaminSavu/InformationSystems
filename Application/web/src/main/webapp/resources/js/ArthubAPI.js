@@ -84,5 +84,40 @@ function ArthubAPI() {
 		return doAsyncGet(apiURL);
 	};
 	
+	this.getUsernames = function(){
+		var apiURL = "/web/arthub/user/all/username";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.newEvent = function(event){
+		var postURL = "/web/arthub/event/add";
+		return doAsyncPost(postURL, event);
+	};
+	
+	this.getUserInformation = function(id){
+		var apiURL = "/web/arthub/user/info/" + id;
+		return doAsyncGet(apiURL);
+	};
+	
+	this.saveChanges = function(id, user){
+		var postURL = "/web/arthub/user/update/" + id;
+		return doAsyncPost(postURL, user);
+	};
+	
+	this.getAllResources = function(){
+		var apiURL = "/web/arthub/resource/all";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getResourceDetails = function(id){
+		var apiURL = "/web/arthub/resource/" + id;
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getComingEvents = function(){
+		var apiURL = "/web/arthub/event/coming";
+		return doAsyncGet(apiURL);
+	};
+	
 	ArthubAPI.instance = this;
 }

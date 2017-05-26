@@ -38,14 +38,24 @@ public class ViewController {
 		return "newResource";
 	}
 	
-	@RequestMapping("/resources")
+	@RequestMapping("/res")
 	public String getResourcePage(){
 		return "resources";
+	}
+	
+	@RequestMapping("/resourceDetails")
+	public String getResourceDetailsPage(){
+		return "resourceDetails";
 	}
 	
 	@RequestMapping("/manageMembers")
 	public String getMembers(){
 		return "manageMembers";
+	}
+	
+	@RequestMapping("/editMember")
+	public String getEditMember(){
+		return "editMember";
 	}
 }
 

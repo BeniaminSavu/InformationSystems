@@ -6,6 +6,8 @@ import org.arthub.controller.response.ResourceResponse;
 import org.arthub.persistence.model.ResourceModel;
 import org.arthub.service.ResourceService;
 import org.arthub.service.data.CalendarData;
+import org.arthub.service.data.ResourceData;
+import org.arthub.service.data.ResourceDetailsData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +36,18 @@ public class ResourceController {
 	
 	@GetMapping("/available/{resourceName}")
 	public List<CalendarData> getResourceAvailable(@PathVariable("resourceName") String resourceName){
-		return resourceService.getResourceAvailability(resourceName);
+		return resourceService.getResourceAvailability(resourceName);	
+	}
+	
+	@GetMapping("/all")
+	public List<ResourceData> getAllResources(){
+		return resourceService.getAllResources();
+		
+	}
+	
+	@GetMapping("/{id}")
+	public ResourceDetailsData getResources(@PathVariable("id") int id){
+		return resourceService.getResource(id);
 		
 	}
 	

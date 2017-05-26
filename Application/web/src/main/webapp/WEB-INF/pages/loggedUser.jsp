@@ -8,8 +8,10 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
   	<script src=<c:url value="/resource/js/ArthubAPI.js"/>></script>
   	<script src=<c:url value="/resource/js/commonUI.js"/>></script>
+  	<script src=<c:url value="/resource/js/loggedUserUI.js"/>></script>
 
 <title>
 ArtHub
@@ -40,7 +42,7 @@ ArtHub
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newResource">Create new resource</a></li>
-						<li><a href="resources">View Resources</a></li>
+						<li><a href="res">View Resources</a></li>
 					</ul>
 		</li>
 		<li><a href="manageMembers">Manage Members</a></li>
@@ -61,14 +63,44 @@ ArtHub
 					</div>			
 			</div>		  
 		</div>
+		
+		<div class="row" >
+    		<h3>Coming Events</h3>
+    		<ul class="thumbnails" id="content-placeholder">
+			<script id="address-template" type="text/x-handlebars-template">
+				{{#each event}}
+				<li class="span3">
+				  <div class="thumbnail">
+					<div class="caption">
+					  <h2>{{name}}</h2>
+					<p>
+						{{resource}}
+					</p>
+					  <p> 
+						{{description}} 
+					  </p>
 
+					  <p> 
+						{{startDate}} 
+					  </p>
+					 
+					</div>
+				  </div>
+				</li>
+				{{/each}}
+						</script>
+					</ul>
+    	</div>
     </div>
+    
+    
 	
   </div>
 
 <script>
 $(document).ready(function() {
 	loadUserFirstAndLastname();
+	loadEvents();
 });  
   </script>
 
