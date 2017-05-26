@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.arthub.persistence.model.EventModel;
+import org.arthub.persistence.model.ResourceModel;
 import org.arthub.persistence.model.UserModel;
 import org.arthub.persistence.repository.EventRepository;
 import org.arthub.persistence.repository.ResourceRepository;
@@ -35,7 +36,8 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public void createEvent(EventData event) {
 		EventModel newEvent = new EventModel();
-		newEvent.setResource(resourceRepository.findByName(event.getResource()));
+		ResourceModel resource = resourceRepository.findByName(event.getResource());
+		newEvent.setResource(resource);
 		
 		if(!resourceServie.isResourceAvailable(event.getResource(), event.getDate(), event.getDuration())){
 			return;
@@ -61,6 +63,7 @@ public class EventServiceImpl implements EventService{
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		newEvent.setCost(resource.getPrice() * event.getDuration());
 		resourceServie.changeResourceAvailable(event.getResource(), event.getDate(), event.getDuration());
 		eventRepository.save(newEvent);
 	}

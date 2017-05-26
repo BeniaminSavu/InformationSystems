@@ -22,4 +22,6 @@ public interface ResourceService {
 	public boolean isResourceAvailable(String resource, String date, int duration);
 	
 	public void changeResourceAvailable(String resource, String date, int duration);
+
+	public ResourceData getResource(String resourceName);
 }
