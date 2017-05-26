@@ -119,5 +119,10 @@ function ArthubAPI() {
 		return doAsyncGet(apiURL);
 	};
 	
+	this.getResource = function(resource){
+		var apiURL = "/web/arthub/resource/name/" + resource;
+		return doAsyncGet(apiURL);
+	};
+	
 	ArthubAPI.instance = this;
 }

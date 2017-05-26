@@ -7,6 +7,31 @@ $('#resource').keyup(function() {
 
 });
 
+$('#duration').keyup(function() {
+	var duration = this.value;
+	
+	var arthubAPI = new ArthubAPI();
+	arthubAPI.setBaseURL("http://localhost:8080");
+	
+	var request = arthubAPI.getResource(resource);
+	request.done(function( data ) {
+		console.log(data);
+		var computedPrice = duration * data.price;
+		document.getElementById("computed-price").innerHTML = "Resource costs: " + data.price + "$<br> Total cost is: " + computedPrice +"$";
+		
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+
+		if (jqXHR.status === 401) { // HTTP Status 401: Unauthorized
+			window.location = 'signin';
+
+		} else {
+			console.error('Houston, we have a problem...');
+		}
+	});
+
+});
+
+
 $(function(){
 	$('#datePicker').datepicker({
 		dateFormat: 'dd-mm-yy',

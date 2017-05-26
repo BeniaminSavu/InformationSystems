@@ -51,4 +51,8 @@ public class ResourceController {
 		
 	}
 	
+	@GetMapping("/name/{resourceName}")
+	public ResourceData getResource(@PathVariable("resourceName") String resourceName){
+		return resourceService.getResource(resourceName);	
+	}
 }

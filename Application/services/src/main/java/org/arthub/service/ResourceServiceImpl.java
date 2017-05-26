@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.arthub.persistence.model.CalendarModel;
 import org.arthub.persistence.model.CalendarResourceModel;
 import org.arthub.persistence.model.ResourceModel;
@@ -143,6 +145,16 @@ public class ResourceServiceImpl implements ResourceService{
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ResourceData getResource(String resourceName) {
+		ResourceModel model = resourceRepository.findByName(resourceName);
+		ResourceData data = new ResourceData();
+		data.setPrice(model.getPrice());
+		data.setName(model.getName());
+		data.setCapacity(model.getCapacity());
+		return data;
 	}
 	
 }
