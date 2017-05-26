@@ -1,6 +1,10 @@
 package org.arthub.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.arthub.persistence.model.CalendarModel;
@@ -10,6 +14,8 @@ import org.arthub.persistence.repository.CalendarRepository;
 import org.arthub.persistence.repository.CalendarResourceRepository;
 import org.arthub.persistence.repository.ResourceRepository;
 import org.arthub.service.data.CalendarData;
+import org.arthub.service.data.ResourceData;
+import org.arthub.service.data.ResourceDetailsData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,13 +52,30 @@ public class ResourceServiceImpl implements ResourceService{
 	}
 
 	@Override
-	public List<ResourceModel> getAllResources() {
-		return resourceRepository.findAll();
+	public List<ResourceData> getAllResources() {
+		List<ResourceModel> resourceModels = resourceRepository.findAll();
+		List<ResourceData> resourceData = new ArrayList<ResourceData>();
+		for (ResourceModel model : resourceModels) {
+			ResourceData data = new ResourceData();
+			data.setId(model.getId());
+			data.setCapacity(model.getCapacity());
+			data.setName(model.getName());
+			data.setPrice(model.getPrice());
+			resourceData.add(data);
+		}
+		return resourceData;
 	}
 
 	@Override
-	public ResourceModel getResource(int id) {
-		return resourceRepository.findById(id);
+	public ResourceDetailsData getResource(int id) {
+		ResourceModel model = resourceRepository.findById(id);
+		ResourceDetailsData data = new ResourceDetailsData();
+		data.setId(model.getId());
+		data.setCapacity(model.getCapacity());
+		data.setDescription(model.getDescription());
+		data.setName(model.getName());
+		data.setPrice(model.getPrice());
+		return data;
 	}
 
 	@Override
@@ -74,6 +97,52 @@ public class ResourceServiceImpl implements ResourceService{
 			dates.add(date);
 		}
 		return dates;
+	}
+
+	@Override
+	public boolean isResourceAvailable(String resourceName, String startDate, int duration) {
+		ResourceModel resource = resourceRepository.findByName(resourceName);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		Calendar calendar = Calendar.getInstance();
+		try {
+			Date time = formatter.parse(startDate);
+			long timeInMs = time.getTime();
+			for(int i=-1; i<duration + 1; i++){
+				time.setTime( timeInMs + (i*1000*60*60*24));
+				calendar.setTime(time);
+				int day = calendar.get(Calendar.DAY_OF_MONTH);
+				int month = calendar.get(Calendar.MONTH) + 1;
+				int year = calendar.get(Calendar.YEAR);
+				CalendarModel date = calendarRepository.findByDayAndMonthAndYear(day, month, year);
+				CalendarResourceModel available = calendarResourceRepository.findByDateAndResource(date, resource);
+				if(!available.isAvailable()){
+					return false;
+				}
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
+	public void changeResourceAvailable(String resourceName, String startDate, int duration){
+		ResourceModel resource = resourceRepository.findByName(resourceName);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		Calendar calendar = Calendar.getInstance();
+		try {
+			Date time = formatter.parse(startDate);
+			long timeInMs = time.getTime();
+			for(int i=-1; i<duration + 1; i++){
+				time.setTime(timeInMs +( i *1000*60*60*24));
+				calendar.setTime(time);
+				CalendarModel date = calendarRepository.findByDayAndMonthAndYear(calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
+				CalendarResourceModel available = calendarResourceRepository.findByDateAndResource(date, resource);
+				available.setAvailable(false);
+				calendarResourceRepository.save(available);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

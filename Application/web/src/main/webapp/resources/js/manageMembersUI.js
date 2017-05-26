@@ -21,6 +21,8 @@ function getUsers() {
 				"firstName" : item.firstName,
 				"lastName" : item.lastName,
 				"username" : item.username,
+				"id" : item.id,
+				"balance": item.balance,
 				"role" : item.role
 			});
 		}

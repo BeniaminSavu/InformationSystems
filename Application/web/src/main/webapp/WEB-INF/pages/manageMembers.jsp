@@ -42,11 +42,10 @@ ArtHub
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newResource">Create new resource</a></li>
-						<li><a href="#">Edit Event</a></li>
-						<li><a href="#">View Events</a></li>
+						<li><a href="res">View Resources</a></li>
 					</ul>
 		</li>
-	   <li class="active"><a href="manageMembers">Manage Members</a></li>
+		<li class="active"><a href="manageMembers">Manage Members</a></li>
 	   <li><a href="index">Edit Profile</a></li>
 	</ul>
 	
@@ -72,6 +71,7 @@ ArtHub
 					<th>First Name</th> 
 					<th>Last Name</th> 
 					<th>Username</th> 
+					<th>Balance</th>
 					<th>Role</th> 
 				</tr> 
 			</thead> 
@@ -81,9 +81,10 @@ ArtHub
 				<tr> 
 					<td>{{firstName}}</td> 
 					<td>{{lastName}}</td>
-					<td>{{username}}</td> 
+					<td>{{username}}</td>
+					<td>{{balance}}</td> 
 					<td>{{role}}</td> 
-					<td><button  type="button" class="btn button1" >Edit User</button>
+					<td><a href="editMember?id={{id}}" class="btn button1" >Edit User</a>
 					<button onclick="deleteUser('{{username}}')" type="button" class="button3 btn">Delete</button></td>
 				</tr> 
 			{{/each}}

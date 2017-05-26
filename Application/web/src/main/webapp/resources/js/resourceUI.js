@@ -1,4 +1,4 @@
-function loadEvents(){
+function loadResources(){
 	
 	var arthubAPI = new ArthubAPI();
 	arthubAPI.setBaseURL("http://localhost:8080");
@@ -8,23 +8,23 @@ function loadEvents(){
 	// Compile the template
 	var theTemplate = Handlebars.compile(theTemplateScript);
 	
-	var request = arthubAPI.getComingEvents();
+	var request = arthubAPI.getAllResources();
 	request.done(function(data) {
 		// Define our data object
-		var events = {
-			event : []
+		var resources = {
+			resource : []
 		};
 
 		for ( var i in data) {
 			var item = data[i];
-			events.event.push({
+			resources.resource.push({
 				"name" : item.name,
-				"startDate" : "Event starting at: " + item.date,
-				"description" : "Description: " + item.description,
-				"resource" : "Room name: " + item.resource
+				"capacity" :"Available seats " + item.capacity,
+				"price" : "$" + item.price,
+				"id" : item.id
 			});
 		}
-		var theCompiledHtml = theTemplate(events);
+		var theCompiledHtml = theTemplate(resources);
 		$('#content-placeholder').html(theCompiledHtml);
 
 		// Add the compiled html to the page
