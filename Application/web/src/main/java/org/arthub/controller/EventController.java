@@ -30,4 +30,13 @@ public class EventController {
 		return eventService.getComingEvents();
 	}
 	
+	@GetMapping("/created")
+	public List<EventData> getCreadtedEvents()	{
+		return eventService.getCreatedEvents();
+	}
+	
+	@GetMapping("/invited")
+	public List<EventData> getInvutedEvents()	{
+		return eventService.getInvitedEvents();
+	}
 }

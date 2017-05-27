@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.arthub.persistence.model.RoleModel;
 import org.arthub.persistence.model.UserModel;
+import org.arthub.service.data.IncomeReportData;
 import org.arthub.service.data.UserData;
 import org.arthub.service.data.UserInfo;
 import org.arthub.service.data.UserName;
@@ -36,4 +37,10 @@ public interface UserService {
 	public UserInfo getUserInfo(int id);
 
 	public void updateUser(UserInfo user, int id);
+
+	public UserInfo getUserInfo();
+
+	public void updateUser(UserInfo user);
+
+	public List<IncomeReportData> getIncomeReport();
 }

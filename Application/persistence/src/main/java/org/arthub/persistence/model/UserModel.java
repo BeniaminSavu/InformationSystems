@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -35,10 +36,21 @@ public class UserModel extends Model {
 	@JoinColumn(name = "roleId")
 	private RoleModel role;
 
-	@OneToMany(mappedBy = "ownedByUser", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "ownedByUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<EventModel> eventsCreated = new ArrayList<EventModel>();
-	
+
+	@ManyToMany(mappedBy = "users", fetch=FetchType.LAZY)
+	private List<EventModel> invites = new ArrayList<EventModel>();
+
 	private int currency;
+
+	public List<EventModel> getInvites() {
+		return invites;
+	}
+
+	public void setInvites(List<EventModel> invites) {
+		this.invites = invites;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -111,6 +123,5 @@ public class UserModel extends Model {
 	public void setCurrency(int currency) {
 		this.currency = currency;
 	}
-	
 
 }

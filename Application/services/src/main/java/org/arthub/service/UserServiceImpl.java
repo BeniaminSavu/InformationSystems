@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.arthub.persistence.model.EventModel;
 import org.arthub.persistence.model.RoleModel;
 import org.arthub.persistence.model.UserModel;
 import org.arthub.persistence.model.UserTokenModel;
 import org.arthub.persistence.repository.RoleRepository;
 import org.arthub.persistence.repository.UserRepository;
 import org.arthub.persistence.repository.UserTokenRepository;
+import org.arthub.service.data.IncomeReportData;
 import org.arthub.service.data.UserData;
 import org.arthub.service.data.UserInfo;
 import org.arthub.service.data.UserName;
@@ -147,6 +149,7 @@ public class UserServiceImpl implements UserService {
 	public UserInfo getUserInfo(int id) {
 		UserModel user = userRepository.findOne(id);
 		UserInfo userInfo = new UserInfo();
+		userInfo.setEmail(user.getEmail());
 		userInfo.setBalance(user.getCurrency());
 		userInfo.setFirstName(user.getFirstName());
 		userInfo.setLastName(user.getLastName());
@@ -169,6 +172,15 @@ public class UserServiceImpl implements UserService {
 		if(!userData.getUsername().equals("")){
 			userModel.setUsername(userData.getUsername());
 		}
+		if(!userData.getFirstName().equals("")){
+			userModel.setFirstName(userData.getFirstName());
+		}
+		if(!userData.getLastName().equals("")){
+			userModel.setLastName(userData.getLastName());
+		}
+		if(!userData.getEmail().equals("")){
+			userModel.setEmail(userData.getEmail());
+		}
 		if(userData.getRole().equals("true")){
 			if(userModel.getRole().getRole().equals("ROLE_USER")){
 				RoleModel newRole = userRoleRepository.findByRole("ROLE_ADMIN");
@@ -179,6 +191,42 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		userRepository.save(userModel);
+	}
+
+	@Override
+	public UserInfo getUserInfo() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserModel user = userRepository.findByUsername(auth.getName());
+		return getUserInfo(user.getId());
+	}
+
+	@Override
+	public void updateUser(UserInfo user) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserModel model = userRepository.findByUsername(auth.getName());
+		updateUser(user, model.getId());
+		
+	}
+
+	@Override
+	public List<IncomeReportData> getIncomeReport() {
+		List<UserModel> models = userRepository.findAll();
+		List<IncomeReportData> data = new ArrayList<IncomeReportData>();
+		
+		for (UserModel model : models) {
+			IncomeReportData incomeReport = new IncomeReportData();
+			incomeReport.setFirstName(model.getFirstName());
+			incomeReport.setLastName(model.getLastName());
+			incomeReport.setUsername(model.getUsername());
+			int dueAmount = 0;
+			for (EventModel event : model.getEventsCreated()) {
+				dueAmount += event.getCost();
+			}
+			incomeReport.setDueAmount(dueAmount);
+			data.add(incomeReport);
+		}
+		
+		return data;
 	}
 
 }

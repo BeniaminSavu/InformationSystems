@@ -46,7 +46,8 @@ ArtHub
 					</ul>
 		</li>
 		<li><a href="manageMembers">Manage Members</a></li>
-	   <li><a href="index">Edit Profile</a></li>
+		<li><a href="reports">Reports</a></li>
+	   <li><a href="editProfile">Edit Profile</a></li>
 	</ul>
 	
     <p id="userdata" class="navbar-text navbar-right" style="padding-right: 50px"></p>
@@ -65,7 +66,7 @@ ArtHub
 		</div>
 		
 		<div class="row" >
-    		<h3>Coming Events</h3>
+    		<h3>Upcoming Events</h3>
     		<ul class="thumbnails" id="content-placeholder">
 			<script id="address-template" type="text/x-handlebars-template">
 				{{#each event}}

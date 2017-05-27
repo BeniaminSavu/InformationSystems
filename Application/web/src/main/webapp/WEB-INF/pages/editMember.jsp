@@ -47,7 +47,7 @@ ArtHub
 					</ul>
 		</li>
 		<li class="active"><a href="manageMembers">Manage Members</a></li>
-	   <li><a href="index">Edit Profile</a></li>
+	   <li><a href="editProfile">Edit Profile</a></li>
 	</ul>
 	
     <p id="userdata" class="navbar-text navbar-right" style="padding-right: 50px"></p>
