@@ -5,6 +5,7 @@ import java.util.List;
 import org.arthub.controller.response.LoginResponse;
 import org.arthub.persistence.model.UserModel;
 import org.arthub.service.UserService;
+import org.arthub.service.data.IncomeReportData;
 import org.arthub.service.data.UserData;
 import org.arthub.service.data.UserInfo;
 import org.arthub.service.data.UserName;
@@ -47,6 +48,16 @@ public class UserController {
 		return userService.getUserInfo(id);
 	}
 
+	@GetMapping("/info")
+	public UserInfo getUserInfo() {
+		return userService.getUserInfo();
+	}
+	
+	@GetMapping("/report/income")
+	public List<IncomeReportData> getIncomeReport() {
+		return userService.getIncomeReport();
+	}
+
 
 	@PostMapping("/delete")
 	public LoginResponse deleteUser(@RequestBody UserModel user) {
@@ -62,6 +73,15 @@ public class UserController {
 		userService.updateUser(user, id);
 		LoginResponse response = new LoginResponse();
 		response.setMessage("buyaa");
+		response.setStatus(200);
+		return response;
+	}
+	
+	@PostMapping("/update")
+	public LoginResponse updateUser(@RequestBody UserInfo user) {
+		userService.updateUser(user);
+		LoginResponse response = new LoginResponse();
+		response.setMessage("Your information has been updated");
 		response.setStatus(200);
 		return response;
 	}

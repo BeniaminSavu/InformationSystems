@@ -9,4 +9,8 @@ public interface EventService {
 	public void createEvent(EventData event);
 
 	public List<EventData> getComingEvents();
+
+	public List<EventData> getCreatedEvents();
+
+	public List<EventData> getInvitedEvents();
 }

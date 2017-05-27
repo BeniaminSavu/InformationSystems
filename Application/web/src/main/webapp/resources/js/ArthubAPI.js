@@ -99,8 +99,18 @@ function ArthubAPI() {
 		return doAsyncGet(apiURL);
 	};
 	
+	this.getUserInformation = function(){
+		var apiURL = "/web/arthub/user/info";
+		return doAsyncGet(apiURL);
+	};
+	
 	this.saveChanges = function(id, user){
 		var postURL = "/web/arthub/user/update/" + id;
+		return doAsyncPost(postURL, user);
+	};
+	
+	this.saveChanges = function(user){
+		var postURL = "/web/arthub/user/update";
 		return doAsyncPost(postURL, user);
 	};
 	
@@ -123,6 +133,21 @@ function ArthubAPI() {
 		var apiURL = "/web/arthub/resource/name/" + resource;
 		return doAsyncGet(apiURL);
 	};
+	
+	this.getCreatedEvents = function(){
+		var apiURL = "/web/arthub/event/created";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getIncomeReport = function(){
+		var apiURL = "/web/arthub/user/report/income";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getInvitedEvents = function(){
+		var apiURL = "/web/arthub/event/invited";
+		return doAsyncGet(apiURL);
+	}
 	
 	ArthubAPI.instance = this;
 }

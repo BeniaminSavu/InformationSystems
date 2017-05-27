@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.arthub.persistence.model.EventModel;
 import org.arthub.persistence.model.ResourceModel;
 import org.arthub.persistence.model.UserModel;
@@ -64,6 +66,9 @@ public class EventServiceImpl implements EventService{
 			e.printStackTrace();
 		}
 		newEvent.setCost(resource.getPrice() * event.getDuration());
+		if(owner.getCurrency() < newEvent.getCost()){
+			return;
+		}
 		resourceServie.changeResourceAvailable(event.getResource(), event.getDate(), event.getDuration());
 		eventRepository.save(newEvent);
 	}
@@ -71,6 +76,45 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public List<EventData> getComingEvents() {
 		List<EventModel> models =eventRepository.findFirst5ByOrderByStartDateAsc();
+		List<EventData> data = new ArrayList<EventData>();
+		for (EventModel model : models) {
+			EventData event = new EventData();
+			event.setDescription(model.getDescription());
+			event.setName(model.getName());
+			event.setResource(model.getResource().getName());
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(model.getStartDate());
+			event.setDate(""+calendar.get(Calendar.DAY_OF_MONTH) +"-"+(calendar.get(Calendar.MONTH)+1) +"-"+calendar.get(Calendar.YEAR));
+			data.add(event);
+		}
+		
+		return data;
+	}
+
+	@Override
+	public List<EventData> getCreatedEvents() {
+		UserModel user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		List<EventModel> models = eventRepository.findByOwnedByUser(user);
+		List<EventData> data = new ArrayList<EventData>();
+		for (EventModel model : models) {
+			EventData event = new EventData();
+			event.setDescription(model.getDescription());
+			event.setName(model.getName());
+			event.setResource(model.getResource().getName());
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(model.getStartDate());
+			event.setDate(""+calendar.get(Calendar.DAY_OF_MONTH) +"-"+(calendar.get(Calendar.MONTH)+1) +"-"+calendar.get(Calendar.YEAR));
+			data.add(event);
+		}
+		
+		return data;
+	}
+
+	@Override
+	@Transactional
+	public List<EventData> getInvitedEvents() {
+		UserModel user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		List<EventModel> models = user.getInvites();
 		List<EventData> data = new ArrayList<EventData>();
 		for (EventModel model : models) {
 			EventData event = new EventData();

@@ -57,5 +57,15 @@ public class ViewController {
 	public String getEditMember(){
 		return "editMember";
 	}
+	
+	@RequestMapping("/editProfile")
+	public String getEditProfile(){
+		return "editProfile";
+	}
+	
+	@RequestMapping("/reports")
+	public String getReportsPage(){
+		return "reports";
+	}
 }
 

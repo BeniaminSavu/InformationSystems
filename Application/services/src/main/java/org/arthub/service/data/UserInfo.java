@@ -7,7 +7,16 @@ public class UserInfo {
 	private String username;
 	private String role;
 	private String password;
+	private String email;
 	private int balance;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getUsername() {
 		return username;
