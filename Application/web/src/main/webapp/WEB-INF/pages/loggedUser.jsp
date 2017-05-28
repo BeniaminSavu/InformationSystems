@@ -8,8 +8,10 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
   	<script src=<c:url value="/resource/js/ArthubAPI.js"/>></script>
   	<script src=<c:url value="/resource/js/commonUI.js"/>></script>
+  	<script src=<c:url value="/resource/js/loggedUserUI.js"/>></script>
 
 <title>
 ArtHub
@@ -22,7 +24,7 @@ ArtHub
   <div class="container-fluid">
     <div class="navbar-header">
       <a href="index">
-         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="82px"/>
+         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="80px" height="45px"/>
       </a>
     </div>
 	<ul class="nav navbar-nav navbar-left">
@@ -40,11 +42,12 @@ ArtHub
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newResource">Create new resource</a></li>
-						<li><a href="#">Edit Event</a></li>
-						<li><a href="#">View Events</a></li>
+						<li><a href="res">View Resources</a></li>
 					</ul>
 		</li>
-	   <li><a href="index">Edit Profile</a></li>
+		<li><a href="manageMembers">Manage Members</a></li>
+		<li><a href="reports">Reports</a></li>
+	   <li><a href="editProfile">Edit Profile</a></li>
 	</ul>
 	
     <p id="userdata" class="navbar-text navbar-right" style="padding-right: 50px"></p>
@@ -61,14 +64,44 @@ ArtHub
 					</div>			
 			</div>		  
 		</div>
+		
+		<div class="row" >
+    		<h3>Upcoming Events</h3>
+    		<ul class="thumbnails" id="content-placeholder">
+			<script id="address-template" type="text/x-handlebars-template">
+				{{#each event}}
+				<li class="span3">
+				  <div class="thumbnail">
+					<div class="caption">
+					  <h2>{{name}}</h2>
+					<p>
+						{{resource}}
+					</p>
+					  <p> 
+						{{description}} 
+					  </p>
 
+					  <p> 
+						{{startDate}} 
+					  </p>
+					 
+					</div>
+				  </div>
+				</li>
+				{{/each}}
+						</script>
+					</ul>
+    	</div>
     </div>
+    
+    
 	
   </div>
 
 <script>
 $(document).ready(function() {
 	loadUserFirstAndLastname();
+	loadEvents();
 });  
   </script>
 

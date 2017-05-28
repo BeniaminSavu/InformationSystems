@@ -12,5 +12,7 @@ public interface ResourceRepository extends CrudRepository<ResourceModel, Intege
 	ResourceModel findById(int id);
 	
 	List<ResourceModel> findAll();
+	
+	ResourceModel findByName(String name);
 
 }

@@ -14,3 +14,61 @@ image {
   background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
   background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
+
+.button1 {
+     background-color: #5bb05b;
+    color: white;
+	border: 0pt;
+}
+
+.button1:hover {
+    background-color: #499049;
+    color: white;
+	border: 0pt;
+}
+.button3 {
+    background-color: #ff2800;
+    color: white;
+	border: 0pt;
+}
+.button3:hover {
+    background-color: #831500;
+    color: white;
+	border: 0pt;
+}
+
+.button1:active {
+    background-color: #499049;
+    color: white;
+	border: 0pt;
+}
+
+.button3:active {
+    background-color: #831500;
+    color: white;
+	border: 0pt;
+}
+
+.button1:target {
+    background-color: #499049;
+    color: white;
+	border: 0pt;
+}
+
+.button3:target {
+    background-color: #831500;
+    color: white;
+	border: 0pt;
+}
+
+.button1:focus {
+    background-color: #5bb05b;
+    color: white;
+	border: 0pt;
+}
+
+.button3:focus {
+     background-color: #ff2800;
+    color: white;
+	border: 0pt;
+}

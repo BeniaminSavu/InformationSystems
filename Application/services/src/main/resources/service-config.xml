@@ -8,7 +8,7 @@
   <context:annotation-config/>
   <context:component-scan base-package="org.arthub.service"/>
   <bean id="tokenGenerator" class="org.arthub.service.helper.TokenGenerator" />
-  <bean id="emailSende" class="org.arthub.service.helper.EmailSenderImpl" />
+  <bean id="emailSender" class="org.arthub.service.helper.EmailSenderImpl" />
   
   <import resource="classpath:mail-config.xml"/>
 </beans>

@@ -18,8 +18,22 @@ function ArthubAPI() {
         });
     };
 
+    var doAsyncDelete = function (partialURL)
+    {
+        var fullUrl = baseURL + partialURL;
+        return $.ajax({
+            url: fullUrl,
+            type: "DELETE",
+            headers: {
+            	"Content-Type":"application/json"            
+            },            
+            dataType: "json"
+        });
+    }
+    
     var doAsyncPost = function (partialURL, jsonDataToPost) {
         var fullUrl = baseURL + partialURL;
+        console.log(jsonDataToPost);
         return $.ajax({
             url: fullUrl,
             type: "POST",
@@ -53,6 +67,87 @@ function ArthubAPI() {
 	this.createResource = function(resource){
 		var postURL = "/web/arthub/resource/add";
 		return doAsyncPost(postURL, resource);
+	};
+	
+	this.getAllUsers = function(){
+		var apiURL = "/web/arthub/user/all";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.deleteUser = function(username){
+		var postURL = "/web/arthub/user/delete";
+		return doAsyncPost(postURL, username);
+	};
+	
+	this.getBusyDates = function(resource){
+		var apiURL = "/web/arthub/resource/available/" + resource;
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getUsernames = function(){
+		var apiURL = "/web/arthub/user/all/username";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.newEvent = function(event){
+		var postURL = "/web/arthub/event/add";
+		return doAsyncPost(postURL, event);
+	};
+	
+	this.getUserInformation = function(id){
+		var apiURL = "/web/arthub/user/info/" + id;
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getUserInformation = function(){
+		var apiURL = "/web/arthub/user/info";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.saveChanges = function(id, user){
+		var postURL = "/web/arthub/user/update/" + id;
+		return doAsyncPost(postURL, user);
+	};
+	
+	this.saveChanges = function(user){
+		var postURL = "/web/arthub/user/update";
+		return doAsyncPost(postURL, user);
+	};
+	
+	this.getAllResources = function(){
+		var apiURL = "/web/arthub/resource/all";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getResourceDetails = function(id){
+		var apiURL = "/web/arthub/resource/" + id;
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getComingEvents = function(){
+		var apiURL = "/web/arthub/event/coming";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getResource = function(resource){
+		var apiURL = "/web/arthub/resource/name/" + resource;
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getCreatedEvents = function(){
+		var apiURL = "/web/arthub/event/created";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getIncomeReport = function(){
+		var apiURL = "/web/arthub/user/report/income";
+		return doAsyncGet(apiURL);
+	};
+	
+	this.getInvitedEvents = function(){
+		var apiURL = "/web/arthub/event/invited";
+		return doAsyncGet(apiURL);
 	}
+	
 	ArthubAPI.instance = this;
 }

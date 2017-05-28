@@ -4,7 +4,7 @@ function createResource(){
 	
 	var elements = document.getElementById("newResource").elements;
     var resource ={};
-    for(var i = 0 ; i < elements.length- 1 ; i++){
+    for(var i = 0 ; i < elements.length ; i++){
         var item = elements.item(i);
         resource[item.name] = item.value;
     }

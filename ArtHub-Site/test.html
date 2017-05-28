@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" />
+	
+	<style>
+		.event a{
+			background-color: #5FBA7D !important;
+			color: #FFFFFF !important;
+		}
+	</style>
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+		
+	
+	<script>
+		var eventDates = {};
+		eventDates[new Date('05/07/2017')] = new Date('05/07/2017');
+		eventDates[new Date('05/12/2017')] = new Date('05/12/2017');
+		eventDates[new Date('05/18/2017')] = new Date('05/18/2017');
+		eventDates[new Date('05/23/2017')] = new Date('05/23/2017');
+		$(function(){
+			$('#datepicker').datepicker({
+				beforeShowDay : function(date){
+					var highlight = eventDates[date];
+					if(highlight){
+						return [true, "event", "Tooltip text"];
+					} else {
+						return [true, '', ''];
+					}
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+ 
+	<input type="text" id="datepicker"/>
+</body>
+</html>

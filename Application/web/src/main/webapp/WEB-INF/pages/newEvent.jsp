@@ -5,10 +5,21 @@
 	<link rel="icon" href=<c:url value="/resource/images/favicon.png"/> type="image/x-icon">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href=<c:url value="/resource/css/workaround.css"/> type="text/css" media="screen">
+	<link rel="stylesheet" href=<c:url value="/resource/css/bootstrap-multiselect.css"/> type="text/css" media="screen">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" />
 	
-
+	<style>
+		.event a{
+			background-color: #5FBA7D !important;
+			color: #FFFFFF !important;
+		}
+	</style>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+	<script src=<c:url value="/resource/js/lib/bootstrap-multiselect.js"/>></script>
 	<script src=<c:url value="/resource/js/ArthubAPI.js"/>></script>
   	<script src=<c:url value="/resource/js/commonUI.js"/>></script>
   	
@@ -22,9 +33,9 @@ ArtHub
 
 <nav class="navbar navbar-default" style="margin-bottom:0">
   <div class="container-fluid">
-   <div class="navbar-header">
+    <div class="navbar-header">
       <a href="index">
-         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="82px"/>
+         <span class="logo"> </span> <img src=<c:url value="/resource/images/logo.png"/> alt="" width="80px" height="45px"/>
       </a>
     </div>
 	<ul class="nav navbar-nav navbar-left">
@@ -32,7 +43,7 @@ ArtHub
 	  <li class="dropdown active">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Events <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class="active"><a  href="#">Create new event</a></li>
+            <li class="active"><a href="newEvent">Create new event</a></li>
             <li><a href="#">Edit Event</a></li>
             <li><a href="#">View Events</a></li>
           </ul>
@@ -42,11 +53,11 @@ ArtHub
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="newResource">Create new resource</a></li>
-						<li><a href="#">Edit Event</a></li>
-						<li><a href="#">View Events</a></li>
+						<li><a href="res">View Resources</a></li>
 					</ul>
 		</li>
-	   <li><a href="index.html">Edit Profile</a></li>
+		<li><a href="manageMembers">Manage Members</a></li>
+	   <li><a href="editProfile">Edit Profile</a></li>
 	</ul>
 	
     <p id="userdata" class="navbar-text navbar-right" style="padding-right: 50px"></p>
@@ -54,16 +65,17 @@ ArtHub
   </div>
 </nav>
 
+
 <div >
 
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-md-offset-1">
-		<form role="form">
+		<form role="form" id="newEvent">
 			<h2>New Event</h2>
 			<div class="row" >
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="Event Title" tabindex="1">
+                        <input type="text" name="name" id="name" class="form-control input-lg" placeholder="Event Title" tabindex="1">
 					</div>
 				</div>
 			</div>
@@ -74,64 +86,63 @@ ArtHub
 					</div>
 				</div>
 			</div>
-			<!-- -->
-			<div class="bootstrap-iso">
-			  <div class="row">
-			   <div class="col-md-6 col-sm-6 col-xs-12">
-	
-				<!-- Form code begins -->
-				<form method="post">
-				  <div class="form-group"> <!-- Date input -->
-					<label class="control-label" for="date">Date</label>
-					<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
-				  </div>
-				 </form>
-				 <!-- Form code ends --> 
-
-				</div>
-			  </div>    
-			</div>
-				<!-- -->
-			<div class="row">
-				<div class="col-xs-12 col-sm-2 col-md-2">
-					<label>Event begins at:</label>
-				</div>
-				
-				<div class="col-xs-12 col-sm-3 col-md-3">
-					<div class="form-group">
-                        <input type="text" name="hour_begin" id="hour_begin" class="form-control input-lg" placeholder="Hour" tabindex="1">
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-3 col-md-3">
-					<div class="form-group">
-						<input type="text" name="minute_begin" id="minute_begin" class="form-control input-lg" placeholder="Minute" tabindex="2">
-					</div>
-				</div>
-				
-			</div>	
 			
-			<div class="row">
-				<div class="col-xs-12 col-sm-2 col-md-2">
-					<label>The duration of the event:</label>
-				</div>
-				
-				<div class="col-xs-12 col-sm-3 col-md-3">
+			<div class="row" >
+				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="hour_duration" id="hour_duration" class="form-control input-lg" placeholder="Hours" tabindex="1">
+						<label class="control-label" for="resource">Resource</label>
+                        <input type="text" name="resource" id="resource" class="form-control input-lg" placeholder="Resource" tabindex="1">
 					</div>
 				</div>
-			</div>	
-				
+			</div>
+			
+			<div class="row" >
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<label class="control-label" for="date">Duration</label>
+                        <input type="text" name="duration" id="duration" class="form-control input-lg" placeholder="Duration" tabindex="1">
+					</div>
+				</div>
+			</div>
+			
+			<div class="row" >
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<label class="control-label" for="date">Members</label>
+                        			<select id="chkveg"  multiple="multiple">
+									
+									</select>
+					</div>
+				</div>
+			</div>
+		<div class="row">
+				 <div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+						<label class="control-label" for="date">Date</label>
+                        <input onclick="getBusyDates()" type="text" name="date" id="datePicker" class="form-control input-lg" placeholder="Date" tabindex="1">
+					</div>
+				</div>
+			</div>
+			</form>
+			<div class="row">
+				 <div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group">
+						<label class="control-label" id="computed-price"></label>
+					</div>
+				</div>
+			</div>
 			<div class="row" >
 				<div class="col-xs-11 col-sm-12 col-md-12">
 					 By clicking <strong class="label label-primary">Create Event</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> regarding event creation set out by this site.
 				</div>
 			</div>
+			
+			
 			<hr class="colorgraph">
 			<div class="row" style="padding-top:20">
-				<div class="col-xs-12 col-md-12"><input type="submit" value="Create Event" class="btn btn-primary btn-block btn-lg"/ tabindex="7"></div>
+				<div class="col-xs-12 col-md-12"><input onclick="eventNew()" type="submit" value="Create Event" class="btn btn-primary btn-block btn-lg"/ tabindex="7"></div>
 			</div>
-		</form>
+	
 	</div>
 </div>
 <!-- Modal -->
@@ -153,12 +164,18 @@ ArtHub
 </div><!-- /.modal -->
 </div>
 
-<script>
-$(document).ready(function() {
-	loadUserFirstAndLastname();
-});  
- </script>
-	
+<script src=<c:url value="/resource/js/newEvent.js"/>></script>
+  	
+  	<script type="text/javascript">
+
+  	$(document).ready(function() {
+  		loadUsernames();
+  		loadUserFirstAndLastname();
+  	});  
+  	
+
+</script>
+
 </body>
 
 </html>
